@@ -65,6 +65,8 @@ module.exports = function(sails) {
       // Whenever something changes in those dirs, reload the ORM, controllers and blueprints.
       // Debounce the event handler so that it only fires after receiving all of the change
       // events.
+      //
+      //  (sails.util` is a private Sails API and could change at any time! Do not use!)
       watcher.on('all', sails.util.debounce(function(action, path, stats) {
 
         sails.log.verbose("Detected API change -- reloading controllers / models...");
@@ -72,30 +74,30 @@ module.exports = function(sails) {
         // don't drop database
         sails.config.models.migrate = sails.config[self.configKey].overrideMigrateSetting ? 'alter' : sails.config.models.migrate;
 
-        // Reload controller middleware
+        // Reload controller middleware (private Sails API -- could change at any time!)
         sails.hooks.controllers.loadAndRegisterControllers(function() {
 
-          // Wait for the ORM to reload
+          // Wait for the ORM to reload (private Sails API -- could change at any time!)
           sails.once('hook:orm:reloaded', function() {
 
-            // Reload locales
+            // Reload locales (private Sails API -- could change at any time!)
             sails.hooks.i18n.initialize(function() {});
 
-            // Reload services
+            // Reload services (private Sails API -- could change at any time!)
             sails.hooks.services.loadModules(function() {});
 
-            // Reload blueprints on controllers
+            // Reload blueprints on controllers (private Sails API -- could change at any time!)
             sails.hooks.blueprints.extendControllerMiddleware();
 
-            // Flush router
+            // Flush router  (private Sails API -- could change at any time!)
             sails.router.flush();
 
-            // Reload blueprints
+            // Reload blueprints  (private Sails API -- could change at any time!)
             sails.hooks.blueprints.bindShadowRoutes();
 
           });
 
-          // Reload ORM
+          // Reload ORM  (private Sails API -- could change at any time!)
           sails.emit('hook:orm:reload');
 
         });
