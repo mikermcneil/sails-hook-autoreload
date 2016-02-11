@@ -1,6 +1,21 @@
 var path = require('path');
 module.exports = function(sails) {
 
+
+  // oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+  // WARNING: THIS HOOK USES PRIVATE, UNDOCUMENTED APIs THAT COULD CHANGE AT ANY TIME
+  // oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+  // This hook uses private APIs of Sails core and core hooks in its implementation.
+  // These private APIs could change **at any time**, including in a patch release of Sails,
+  // which means if you use them in your Sails app or hook, then when a new version of Sails is
+  // installed, _your app or hook could stop working_. In other words, avoid using these private APIs
+  // in your own app, hook, tutorial, example, etc.  If you must use them, PLEASE INCLUDE THIS WARNING
+  // AT THE TOP OF THE RELEVANT FILE(S) OR CODE SAMPLE(S).  Similarly, if you use THIS PACKAGE in your
+  // app, hook, tutorial, example, etc., then PLEASE INCLUDE THIS WARNING in your source code.
+  // ----------------------------------------------------------------------------------------------------
+
+
+
   return {
 
     /**
